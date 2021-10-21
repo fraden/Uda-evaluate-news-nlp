@@ -4,19 +4,27 @@ const fetch = require("node-fetch");
 const dotenv = require('dotenv');
 dotenv.config();
 
+const bodyParser = require('body-parser')
+
 var path = require('path')
 const express = require('express')
 const mockAPIResponse = require('./mockAPI.js')
 
 const app = express()
-
 app.use(express.static('dist'))
+
+//Here we are configuring express to use body-parser as middle-ware.
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+// Cors for cross origin allowance
+const cors = require('cors');
+app.use(cors());
 
 console.log(__dirname)
 
 app.get('/', function(req, res) {
-    // res.sendFile('dist/index.html')
-    res.sendFile(path.resolve('src/client/views/index.html'))
+    res.sendFile('dist/index.html')
+        // res.sendFile(path.resolve('src/client/views/index.html'))
 })
 
 // designates what port the app will listen to for incoming requests
@@ -49,3 +57,5 @@ const response = fetch(baseURL, requestOptions)
     }))
     .then(({ status, body }) => console.log(status, body))
     .catch(error => console.log('error', error));
+
+//app.post("/api", response);
