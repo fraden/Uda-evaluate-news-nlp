@@ -17,7 +17,7 @@ async function handleSubmit(event) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ text: data })
+            body: JSON.stringify({ urlText: data })
         });
 
         try {
@@ -29,7 +29,6 @@ async function handleSubmit(event) {
     }
 
     let sentiment = await postData('http://localhost:8081/api', urlText)
-        .then(sentiment => sentiment.json())
         .then(
             function(res) {
                 console.log("----")
