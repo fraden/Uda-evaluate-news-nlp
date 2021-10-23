@@ -1,5 +1,6 @@
 import { checkForName } from './js/nameChecker'
 import { handleSubmit } from './js/formHandler'
+import { urlChecker } from './js/urlChecker'
 
 // according to lesson 3-6
 import './styles/resets.scss'
@@ -20,5 +21,6 @@ confidenceText.innerHTML = `empty`;
 
 export {
     checkForName,
-    handleSubmit
+    handleSubmit,
+    urlChecker
 }

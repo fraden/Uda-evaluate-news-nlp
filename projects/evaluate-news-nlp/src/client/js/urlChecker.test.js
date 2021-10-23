@@ -1,4 +1,4 @@
-const urlChecker = require('./urlChecker');
+import { urlChecker } from './urlChecker'
 
 test('checks valid url', () => {
     expect(urlChecker("http://google.com/")).toBe(true);

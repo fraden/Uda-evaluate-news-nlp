@@ -3,4 +3,4 @@ const urlChecker = (url) => {
     return regex.test(url);
 }
 
-module.exports = urlChecker;
+export { urlChecker }
