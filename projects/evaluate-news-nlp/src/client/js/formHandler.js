@@ -12,24 +12,6 @@ async function handleSubmit(event) {
     let urlText = document.getElementById('url').value
     if (Client.urlChecker(urlText)) {
         resultsText.innerHTML = "Here are the results:"
-        const postData = async(url = '', data = {}) => {
-            // Default options are marked with *
-            const res = await fetch(url, {
-                method: 'POST',
-                credentials: 'same-origin',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ urlText: data })
-            });
-
-            try {
-                const newData = await res.json();
-                return newData;
-            } catch (error) {
-                console.log("error", error);
-            }
-        }
 
         let sentiment = await postData('http://localhost:8081/api', urlText)
             .then(
@@ -48,6 +30,29 @@ async function handleSubmit(event) {
     }
 }
 
+const postData = async(url = '', data = {}) => {
+    // Default options are marked with *
+    const res = await fetch(url, {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ urlText: data })
+    });
+
+    try {
+        const newData = await res.json();
+        return newData;
+    } catch (error) {
+        console.log("error", error);
+    }
+}
 
 
-export { handleSubmit }
+
+
+export {
+    handleSubmit,
+    postData
+}
